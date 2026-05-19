@@ -116,29 +116,17 @@ else
     echo "pi coding agent already installed"
 fi
 
-# # Step 9: Setup pi coding agent model configuration
-# mkdir -p "${PI_AGENT_DIR}"
-# MODELS_JSON="/workspace/source/models.json"
-# PI_MODELS_FILE="${PI_AGENT_DIR}/models.json"
-
-# if [ -f "${MODELS_JSON}" ]; then
-#     cp "${MODELS_JSON}" "${PI_MODELS_FILE}"
-#     echo "Setup pi coding agent models from ${MODELS_JSON}"
-# else
-#     echo "WARNING: models.json not found, pi coding agent will use default configuration"
-# fi
-
 # Step 9: Setup pi coding agent model configuration
 mkdir -p "${PI_AGENT_DIR}"
-LOGIN_SDSC_LLM="/workspace/source/race-sdsc-llm.ts"
+LOGIN_SDSC_LLM="/workspace/source/sdsc-llm.ts"
 PI_LOGIN_SDSC_LLM_FILE="${PI_AGENT_DIR}/extensions/"
 mkdir -p "${PI_LOGIN_SDSC_LLM_FILE}"
 
 if [ -f "${LOGIN_SDSC_LLM}" ]; then
     cp "${LOGIN_SDSC_LLM}" "${PI_LOGIN_SDSC_LLM_FILE}"
-    echo "Setup pi coding agent models from ${LOGIN_SDSC_LLM}"
+    echo "Setup pi coding agent SDSC LLM extension from ${LOGIN_SDSC_LLM}"
 else
-    echo "WARNING: race-sdsc-llm.ts not found, pi coding agent will use default configuration"
+    echo "WARNING: sdsc-llm.ts not found, pi coding agent will use default configuration"
 fi
 
 

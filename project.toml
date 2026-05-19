@@ -12,11 +12,9 @@ type = "Apache-2.0"
 [io.buildpacks]
 include = [
     "init.d/",
-    "ocli-login.py",
-    "poetry.lock",
     "project.toml",
     "pyproject.toml",
-    "models.json"
+    "sdsc-llm.ts"
 ]
 
 [com.heroku.buildpacks.deb-packages]

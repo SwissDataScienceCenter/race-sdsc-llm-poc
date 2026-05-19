@@ -1,11 +1,11 @@
 /**
- * RACE-SDSC LLM Provider Extension
+ * SDSC LLM Provider Extension
  *
  * ~/.pi/agent/auth.json instead.
  *
  * Usage:
- *   pi -e ./race-sdsc-llm
- *   # Then /login race-sdsc-llm to authenticate (device code flow)
+ *   pi -e ./sdsc-llm
+ *   # Then /login sdsc-llm to authenticate (device code flow)
  *   # Then /model to select gemma-4 or qwen3.6
  */
 
@@ -168,10 +168,10 @@ async function finishDeviceCodeFlow(
 // OAuth Login / Refresh
 // =============================================================================
 
-async function loginRaceSdscLlm(
+async function loginSdscLlm(
   callbacks: OAuthLoginCallbacks
 ): Promise<OAuthCredentials> {
-  console.log("Starting RACE-SDSC LLM device code flow...");
+  console.log("Starting SDSC LLM device code flow...");
 
   const deviceCode = await startDeviceCodeFlow();
 
@@ -201,7 +201,7 @@ async function loginRaceSdscLlm(
   };
 }
 
-async function refreshRaceSdscLlmToken(
+async function refreshSdscLlmToken(
   credentials: OAuthCredentials
 ): Promise<OAuthCredentials> {
   const config = await discoverOidc();
@@ -239,7 +239,7 @@ async function refreshRaceSdscLlmToken(
 // Stream Function
 // =============================================================================
 
-export function streamRaceSdscLlm(
+export function streamSdscLlm(
   model: Model<Api>,
   context: Context,
   options?: SimpleStreamOptions
@@ -252,7 +252,7 @@ export function streamRaceSdscLlm(
       const accessToken = options?.apiKey;
       if (!accessToken) {
         throw new Error(
-          "No access token. Run /login race-sdsc-llm to authenticate."
+          "No access token. Run /login sdsc-llm to authenticate."
         );
       }
 
@@ -311,10 +311,10 @@ export function streamRaceSdscLlm(
 // =============================================================================
 
 export default function (pi: ExtensionAPI) {
-  pi.registerProvider("race-sdsc-llm", {
-    name: "RACE-SDSC LLM",
+  pi.registerProvider("sdsc-llm", {
+    name: "SDSC LLM",
     baseUrl: VLLM_BASE_URL,
-    apiKey: "RACE_SDSC_LLM_TOKEN", // env var fallback (optional, OAuth takes precedence)
+    apiKey: "SDSC_LLM_TOKEN", // env var fallback (optional, OAuth takes precedence)
     api: "openai-completions",
     models: [
       {
@@ -342,11 +342,11 @@ export default function (pi: ExtensionAPI) {
       },
     ],
     oauth: {
-      name: "RACE-SDSC LLM (OIDC)",
-      login: loginRaceSdscLlm,
-      refreshToken: refreshRaceSdscLlmToken,
+      name: "SDSC LLM (OIDC)",
+      login: loginSdscLlm,
+      refreshToken: refreshSdscLlmToken,
       getApiKey: (cred) => cred.access,
     },
-    streamSimple: streamRaceSdscLlm,
+    streamSimple: streamSdscLlm,
   });
 }
