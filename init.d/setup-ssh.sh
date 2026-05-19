@@ -131,7 +131,7 @@ fi
 # Step 9: Setup pi coding agent model configuration
 mkdir -p "${PI_AGENT_DIR}"
 LOGIN_SDSC_LLM="/workspace/source/race-sdsc-llm.ts"
-PI_LOGIN_SDSC_LLM_FILE="${PI_AGENT_DIR}/extensions/race-sdsc-llm.ts"
+PI_LOGIN_SDSC_LLM_FILE="${PI_AGENT_DIR}/extensions/"
 mkdir -p "${PI_LOGIN_SDSC_LLM_FILE}"
 
 if [ -f "${LOGIN_SDSC_LLM}" ]; then
