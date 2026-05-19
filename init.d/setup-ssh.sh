@@ -130,30 +130,6 @@ else
 fi
 
 
-# Set PI_CODING_AGENT_DIR so it persists in sessions
-echo "export PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent" >> ~/.bashrc
-PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent pi install npm:pi-sandbox
-
-cp /workspace/source/ocli-login.py $RENKU_WORKING_DIR/.local/bin/ocli-login
-chmod +x $RENKU_WORKING_DIR/.local/bin/ocli-login
-
-# Step 9: Setup ocli token from secrets
-LLOCM_API_KEY_SECRET="${RENKU_SECRETS_PATH}/llmApiKey"
-LLOCM_API_KEY_FILE="${KEYS_FOLDER}/llmApiKey"
-
-if [ -f "${LLOCM_API_KEY_SECRET}" ]; then
-    cp "${LLOCM_API_KEY_SECRET}" "${LLOCM_API_KEY_FILE}"
-    chmod 600 "${LLOCM_API_KEY_FILE}"
-    echo "Setup ocli API key from secrets"
-fi
-
-# Step 10: Print instructions
-SSH_INSTRUCTIONS_FILE="${RENKU_WORKING_DIR}/ssh_instructions.md"
-echo "# SSH instructions" > "${SSH_INSTRUCTIONS_FILE}"
-echo "" >> "${SSH_INSTRUCTIONS_FILE}"
-echo "To start iroh-ssh, run:"  | tee -a "${SSH_INSTRUCTIONS_FILE}"
-echo "  ${IROH_SSH_BIN} server --persist --ssh-port 2222" | tee -a "${SSH_INSTRUCTIONS_FILE}"
-echo "" >> "${SSH_INSTRUCTIONS_FILE}"
-echo "For more information, see README.md" | tee -a "${SSH_INSTRUCTIONS_FILE}"
-
-echo "SSH setup complete. See ${SSH_INSTRUCTIONS_FILE} for connection details."
+# # Set PI_CODING_AGENT_DIR so it persists in sessions
+# echo "export PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent" >> ~/.bashrc
+# PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent pi install npm:pi-sandbox
