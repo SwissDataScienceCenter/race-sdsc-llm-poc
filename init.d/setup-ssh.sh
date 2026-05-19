@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+ 
 # Step 0: Check if required secrets exist
 if [ -z "${RENKU_SECRETS_PATH:-}" ]; then
     echo "ERROR: \$RENKU_SECRETS_PATH is not defined, skipping SSH setup"
