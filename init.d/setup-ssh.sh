@@ -130,6 +130,6 @@ else
 fi
 
 
-# # Set PI_CODING_AGENT_DIR so it persists in sessions
-# echo "export PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent" >> ~/.bashrc
+# Set PI_CODING_AGENT_DIR so it persists in sessions
+echo "export PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent" >> ~/.bashrc
 # PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent pi install npm:pi-sandbox
