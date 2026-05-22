@@ -116,6 +116,24 @@ else
     echo "pi coding agent already installed"
 fi
 
+# Step 8: Install claude coding agent
+if ! command -v claude &> /dev/null; then
+    echo "Installing claude coding agent..."
+    npm install -g @anthropic-ai/claude-code
+    echo "Installed claude coding agent"
+else
+    echo "claude coding agent already installed"
+fi
+
+# Step 8: Install codex coding agent
+if ! command -v codex &> /dev/null; then
+    echo "Installing codex coding agent..."
+    npm i -g @openai/codex
+    echo "Installed codex coding agent"
+else
+    echo "codex coding agent already installed"
+fi
+
 # Step 9: Setup pi coding agent model configuration
 mkdir -p "${PI_AGENT_DIR}"
 LOGIN_SDSC_LLM="/workspace/source/sdsc-llm.ts"
