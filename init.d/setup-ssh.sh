@@ -150,5 +150,7 @@ fi
 
 # Set PI_CODING_AGENT_DIR so it persists in sessions
 echo "export PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent" >> ~/.bashrc
+echo "export CLAUDE_CONFIG_DIR=/home/renku/work/.claude" >> ~/.bashrc
+echo "export CODEX_HOME=/home/renku/work/.codex" >> ~/.bashrc
 echo "export BROWSER=true" >> ~/.bashrc
 # PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent pi install npm:pi-sandbox
