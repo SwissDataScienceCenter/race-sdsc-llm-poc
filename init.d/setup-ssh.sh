@@ -100,7 +100,7 @@ if [ -f "${IROH_PRIVATE_KEY_SECRET}" ] && [ -f "${IROH_PUBLIC_KEY_SECRET}" ]; th
 fi
 
 
-iroh-ssh service install --ssh-port 2222
+ ${IROH_SSH_BIN} service install --ssh-port 2222
 
 
 # Download and install nvm:
