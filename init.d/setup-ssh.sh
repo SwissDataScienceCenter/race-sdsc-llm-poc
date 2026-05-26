@@ -70,8 +70,8 @@ echo "Started sshd daemon"
 # Step 6: Setup iroh-ssh (version 0.2.10)
 BIN_FOLDER="${RENKU_MOUNT_DIR}/.local/bin"
 IROH_SSH_BIN="${BIN_FOLDER}/iroh-ssh"
-IROH_SSH_VERSION="0.2.10"
-IROH_SSH_SHA256="2e8edc7d0868754486dc32052ce32aa67271729fd91c83c544a3e1ec4a06a7f1"
+IROH_SSH_VERSION="0.2.11"
+IROH_SSH_SHA256="4be1091181b04d73625299fe91907004095bcd0ba200c0c6779b065aa3abae2c"
 
 if [ -x "${IROH_SSH_BIN}" ]; then
     echo "Executable ${IROH_SSH_BIN} already present, skipping download"
