@@ -155,5 +155,5 @@ echo "export CODEX_HOME=/home/renku/work/.codex" >> ~/.bashrc
 echo "export BROWSER=true" >> ~/.bashrc
 # PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent pi install npm:pi-sandbox
 
- ${IROH_SSH_BIN} service install --ssh-port 2222
+ ${IROH_SSH_BIN} server --ssh-port 2222 --persist &
 
