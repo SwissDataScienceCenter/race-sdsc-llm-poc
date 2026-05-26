@@ -41,7 +41,7 @@ In addition, it uses [iroh-ssh](https://github.com/rustonbsd/iroh-ssh) to establ
 Get your local public SSH key, e.g. on Linux run
 ```
 cat ~/.ssh/id_ed25519.pub 
-# Copy the output from the terminal
+# Take note of the output from the terminal for an upcoming step
 ```
 
 #### Create a host key for the Renku session
@@ -49,7 +49,12 @@ cat ~/.ssh/id_ed25519.pub
 Generate a SSH ed25519 key for this Renku session locally. Without it, connecting to the Renku session via SSH is more cumbersome.
 
 ```
-ssh-keygen -C "renku session host key" -N "" -t ed25519 -f .ssh/ssh_host_key_ed25519
+ssh-keygen -C "renku session host key" -N "" -t ed25519 -f ~/.ssh/ssh_host_key_ed25519
+```
+
+```
+cat ~/.ssh/ssh_host_key_ed25519
+# Take note of the output from the terminal for an upcoming step
 ```
 
 #### Prepare Renku secrets
