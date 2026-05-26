@@ -100,6 +100,9 @@ if [ -f "${IROH_PRIVATE_KEY_SECRET}" ] && [ -f "${IROH_PUBLIC_KEY_SECRET}" ]; th
 fi
 
 
+iroh-ssh service install --ssh-port 2222
+
+
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 # in lieu of restarting the shell
