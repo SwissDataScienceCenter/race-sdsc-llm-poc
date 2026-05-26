@@ -1,8 +1,36 @@
 # Renku Agentic Coding Environment PoC 
 
-The project uses [iroh-ssh](https://github.com/rustonbsd/iroh-ssh) to establish a direct peer to peer tunnel between the Renku session and your machine. You can then login via SSH or connect VSCode directly to the session.
 
-## Quickstart
+The project adds agent harnesses for popular LLM providers to a Renku session. 
+
+
+In addition, it uses [iroh-ssh](https://github.com/rustonbsd/iroh-ssh) to establish a direct peer to peer tunnel between the Renku session and your machine. You can then login via SSH or connect VSCode directly to the session.
+
+## Quickstart (Agent)
+
+### Work with the example project
+1. Open the [Renku Agentic Coding Environment](https://renkulab.io/p/codev/race-sdsc-llm) ([link](https://renkulab.io/p/codev/race-sdsc-llm))
+2. Click "Launch" to start a Session.
+3. Select a resource, "Small" should be sufficient
+4. Wait for the session to start. If it asks to trust the folder, click "Trust it"
+5. Use/Open a terminal (Ctrl+Shift+C or via the VSCode menu)
+6. Type `pi` and hit enter
+7. Type `/login` and hit enter
+8. Select `Use a subscription` -> `SDSC LLM (OIDC)`
+9. Follow the link in the pop-up window
+10. Login like described in the previous section **Accessing the Web Interface**
+11. Close the tab and return to the Renku session tab. 
+12. Start prompting the agent, e.g. "Explore this codebase"
+
+### Add your own code
+1. Login to Renku
+2. Open the  [Renku Agentic Coding Environment](https://renkulab.io/p/codev/race-sdsc-llm) ([link](https://renkulab.io/p/codev/race-sdsc-llm))
+3. Copy the project. Click on the menu in the info box and click "Copy Project".
+4. Add a code repository to your project ([documented here](https://docs.renkulab.io/en/stable/docs/users/code/guides/add-code-repository-to-project))
+5. Start a new session as described above. The repository will be mounted inside your session.
+
+
+## Quickstart (SSH)
 - Be familiar with how SSH works and have it installed ([More Info](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent))
 - Install [iroh-ssh](https://github.com/rustonbsd/iroh-ssh#installation) for your platform
 
@@ -16,45 +44,37 @@ cat ~/.ssh/id_ed25519.pub
 # Copy the output from the terminal
 ```
 
+#### Create a host key for the Renku session
+Otherwise you trust the SSH server, whenever you SSH into a restarted Renku session.
+
+Generate a SSH ed25519 key for this Renku session locally.
+
+```
+ssh-keygen -C "renku session host key" -N "" -t ed25519 -f .ssh/ssh_host_key_ed25519
+```
+
 #### Prepare Renku secrets
 In your Renku project go to `Settings`, then `Session secret slots` and add the following secrets
 
 | Slot name | Filename | Content |
 | --- | --- | --- |
 | authorized_keys | authorized_keys | Your local public key |
-
-
-
-### Setup Renku session
-In your Renku project
-- Create a new session
-- Choose **External environment**
-- Add the following URL to **Container Image** field
-```
-ghcr.io/niowniow/coductor:main
-```
-- Click **Next**
-- Choose a session name and click **Add session launcher**
+| ssh_host_ed25519_key | ssh_host_ed25519_key | The content of `.ssh/ssh_host_key_ed25519` |
 
 
 ### Start Renku session and connect via SSH
-- Click the **Launch** button of your new session
-- When the session is ready you can use the terminal of the renku session and type
+- Click the **Launch** button of the session
+- When the session is ready you can use the terminal of the Renku session and type
 ```
 iroh-ssh info
 ```
 - You will find an entry like this
 ```
 Your server iroh-ssh nodeid:
-  iroh-ssh renku@0a2ccf05a10db63f35f21e7b5aacc6aec45995d06a0b4d40a59a3b5ff02e763c
+  iroh-ssh renku@<long id>
 ```
 - Copy the `iroh-ssh renku@...` line and paste it into a terminal of your local machine
 - You should now be connected via SSH to your session
-
-
-Alternativly, You can also find the connection id in the logs of the Renku session.
-Click on the **Get Logs** button, then select  **Amalthea Session**. The connection string should be at the top.
-
 
 ## Make persistent connection
 
