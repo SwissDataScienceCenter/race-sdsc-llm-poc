@@ -100,9 +100,6 @@ if [ -f "${IROH_PRIVATE_KEY_SECRET}" ] && [ -f "${IROH_PUBLIC_KEY_SECRET}" ]; th
 fi
 
 
- ${IROH_SSH_BIN} service install --ssh-port 2222
-
-
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 # in lieu of restarting the shell
@@ -157,3 +154,6 @@ echo "export CLAUDE_CONFIG_DIR=/home/renku/work/.claude" >> ~/.bashrc
 echo "export CODEX_HOME=/home/renku/work/.codex" >> ~/.bashrc
 echo "export BROWSER=true" >> ~/.bashrc
 # PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent pi install npm:pi-sandbox
+
+ ${IROH_SSH_BIN} service install --ssh-port 2222
+
