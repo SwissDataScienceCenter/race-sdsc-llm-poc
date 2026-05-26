@@ -99,7 +99,11 @@ if [ -f "${IROH_PRIVATE_KEY_SECRET}" ] && [ -f "${IROH_PUBLIC_KEY_SECRET}" ]; th
     echo "Using persistent iroh-ssh keys from secrets"
 fi
 
-
+# start iroh ssh server
+start-stop-daemon --start --background \
+  --pidfile /var/run/iroh-ssh.pid --make-pidfile \
+  --exec  ${IROH_SSH_BIN} server -- --ssh-port 2222 --persist
+  
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 # in lieu of restarting the shell
@@ -155,5 +159,4 @@ echo "export CODEX_HOME=/home/renku/work/.codex" >> ~/.bashrc
 echo "export BROWSER=true" >> ~/.bashrc
 # PI_CODING_AGENT_DIR=/home/renku/work/.pi/agent pi install npm:pi-sandbox
 
- ${IROH_SSH_BIN} server --ssh-port 2222 --persist &
 
