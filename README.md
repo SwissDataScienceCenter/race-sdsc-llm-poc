@@ -45,9 +45,8 @@ cat ~/.ssh/id_ed25519.pub
 ```
 
 #### Create a host key for the Renku session
-Otherwise you trust the SSH server, whenever you SSH into a restarted Renku session.
 
-Generate a SSH ed25519 key for this Renku session locally.
+Generate a SSH ed25519 key for this Renku session locally. Without it, connecting to the Renku session via SSH is more cumbersome.
 
 ```
 ssh-keygen -C "renku session host key" -N "" -t ed25519 -f .ssh/ssh_host_key_ed25519
