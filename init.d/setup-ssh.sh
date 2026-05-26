@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+# set -x
  
 # Step 0: Check if required secrets exist
 if [ -z "${RENKU_SECRETS_PATH:-}" ]; then
