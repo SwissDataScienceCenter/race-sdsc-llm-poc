@@ -101,7 +101,6 @@ fi
 
 # start iroh ssh server
 start-stop-daemon --start --background \
-  --pidfile /var/run/iroh-ssh.pid --make-pidfile \
   --exec  ${IROH_SSH_BIN} -- server --ssh-port 2222 --persist
   
 # Download and install nvm:
